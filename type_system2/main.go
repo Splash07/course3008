@@ -2,8 +2,9 @@ package main
 
 import (
 	"fmt"
-
-	"github.com/dattiennguyen/course3008/type_system/student"
+    "strconv"
+	"github.com/Splash07/course3008/type_system/student"
+	"reflect"
 )
 
 func main() {
@@ -38,4 +39,47 @@ func main() {
 		fmt.Println(v)
 	}
 
-}
+	// Type casting (string <-> byte slice)
+	aString := "hello world"package main
+	
+	bs := []byte(aString)
+
+	bString := string(bs)
+
+	fmt.Println(bString)
+
+	aInt := 100
+
+	aString = strconv
+
+	fmt.Println(aString + "mot tram")
+
+	bInt, err := strconv.Atoi(aString)
+	if err != nil {
+		fmt.Println(err)
+	}
+	fmt.Println(bInt + 100)
+
+	// int <-> float
+
+	aInt = 300
+
+	var aFloat float32
+	aFloat = float32(300)
+	type1 := reflect.TypeOf(aFloat)
+	fmt.Println(aFloat, "type=", type1.Name(), "kind=", type1.Kind())
+
+	cInt := int(aFloat)
+	type1 = reflect.TypeOf(cInt)
+	fmt.Println(cInt, "type=", typ1.Name(), "kind=", type1.Kind())
+
+	//struct <-> struct
+
+	type Boy struct {
+		FirstName string
+		LastName  string
+		Age       int
+		Email     string
+	}
+
+	boy := Boy {"Dylan", "Nguyen", 300, "dylan@gmail.com"}
