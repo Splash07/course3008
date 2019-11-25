@@ -1,56 +1,72 @@
 package main
 
 import (
+	"encoding/json"
 	"fmt"
-    "strconv"
 	"github.com/Splash07/course3008/type_system/student"
 	"reflect"
+	"strconv"
 )
 
 func main() {
+
 	//map
 
-	// aMap := map[string]int{"a": 1, "b": 3, "c": 5}
+	aMap := map[string]int{"a": 1, "b": 3, "d": 5}
 
-	// for i, v := range aMap {
-	// 	fmt.Printf("index at %s has value %d \n", i, v)
-	// }
+	for i, v := range aMap {
+		fmt.Printf("index at %s has value %d \n", i, v)
+	}
 
-	// //map[string]interface{}
+	//map[string]interface{}
 
-	// aStudent := student.Student{FirstName: "Dylan", LastName: "Nguyen", Age: "10", Email: "lol@gmail.com"}
+	aStudent := student.Student{FirstName: "Phuoc", LastName: "Nguyen", Age: 100}
 
-	// bs, _ = json.Unmarshal(aStudent)
+	bs, _ := json.Marshal(aStudent)
 
-	// var m map[string]interface{}
+	var m map[string]interface{}
 
-	// json.Unmarshal()
+	json.Unmarshal(bs, &m)
+
+	fmt.Printf("%+v", m)
 
 	// channel
-	go func ({
+	ch := make(chan int)
+
+	go func() {
 		ch <- 1
 		ch <- 2
 		ch <- 8
 		ch <- 4
 		close(ch)
-	})()
+	}()
 
 	for v := range ch {
 		fmt.Println(v)
 	}
 
-	// Type casting (string <-> byte slice)
-	aString := "hello world"package main
-	
-	bs := []byte(aString)
+	//array
+
+	// var location [2]float32
+
+	// slice
+	// var ids []int
+
+	// Type casting (string <-> byte slice, string - int, int - float, struct - struct, struct <-> map[string]interface{}
+
+	// string - byte slice
+	aString := "hello world"
+
+	bs = []byte(aString)
 
 	bString := string(bs)
 
 	fmt.Println(bString)
 
+	// int <-> string
 	aInt := 100
 
-	aString = strconv
+	aString = strconv.Itoa(aInt)
 
 	fmt.Println(aString + "mot tram")
 
@@ -67,13 +83,13 @@ func main() {
 	var aFloat float32
 	aFloat = float32(300)
 	type1 := reflect.TypeOf(aFloat)
-	fmt.Println(aFloat, "type=", type1.Name(), "kind=", type1.Kind())
+	fmt.Println(aFloat, "type =", type1.Name(), "kind=", type1.Kind())
 
 	cInt := int(aFloat)
 	type1 = reflect.TypeOf(cInt)
-	fmt.Println(cInt, "type=", typ1.Name(), "kind=", type1.Kind())
+	fmt.Println(cInt, "type =", type1.Name(), "kind=", type1.Kind())
 
-	//struct <-> struct
+	// struct <-> struct
 
 	type Boy struct {
 		FirstName string
@@ -82,4 +98,32 @@ func main() {
 		Email     string
 	}
 
-	boy := Boy {"Dylan", "Nguyen", 300, "dylan@gmail.com"}
+	boy := Boy{"Phi", "Nguyen", 300, "phi@gmail.com"}
+
+	type1 = reflect.TypeOf(boy)
+	fmt.Println(boy, "type =", type1.Name(), "kind=", type1.Kind())
+
+	bStudent := student.Student(boy)
+
+	fmt.Println(bStudent)
+
+	// type conversion vs type assertion
+	//  Type assertion interface{} -> string, int, struct
+
+	var i interface{}
+
+	i = 100
+
+	aInt = i.(int)
+
+	fmt.Println(aInt)
+
+	fmt.Printf("%+v \n", m)
+
+	if dString, ok := m["first_name"].(string); ok {
+		fmt.Println(dString)
+	} else {
+		fmt.Println("cannot assert, wrong type!")
+	}
+
+}
