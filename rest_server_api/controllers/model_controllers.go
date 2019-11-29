@@ -39,7 +39,7 @@ func GetAllStudents(c echo.Context) error {
 func AddStudent(c echo.Context) error {
     var newStudent student.Student
  
-    if err := c.Bind(newStudent); err != nil {
+    if err := c.Bind(&newStudent); err != nil {
         return err
     }
  
