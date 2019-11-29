@@ -1,13 +1,13 @@
-package controller
+package controllers
 
 import (
+	"github.com/Splash07/course3008/type_system/student"
 	"github.com/labstack/echo"
 	"net/http"
-	"github.com/Splash07/course3008/type_system/student"
 )
 
 func getAllStudents(c echo.Context) error {
-	students := [] student.Student {
+	students := []student.Student{
 		{
 			FirstName: "Dylan",
 			LastName:  "Nguyen",
