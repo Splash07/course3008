@@ -6,6 +6,8 @@ import (
 	"net/http"
 	"github.com/Splash07/course3008/rest_server/controllers"
 	"github.com/labstack/echo"
+	"github.com/labstack/echo/engine/standard"
+	"github.com/labstack/echo/middleware"
 )
 
 func main() {
@@ -23,7 +25,7 @@ func main() {
 
 
 	// Route => handler
-	e.GET("/all_students", controllers.getAllStudents)
+	e.GET("/all_students", controllers.GetAllStudents)
 
 	// Server
 	e.Run(standard.New(":8080"))

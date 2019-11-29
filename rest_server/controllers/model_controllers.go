@@ -6,7 +6,7 @@ import (
 	"net/http"
 )
 
-func getAllStudents(c echo.Context) error {
+func GetAllStudents(c echo.Context) error {
 	students := []student.Student{
 		{
 			FirstName: "Dylan",
