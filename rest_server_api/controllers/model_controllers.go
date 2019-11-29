@@ -50,9 +50,9 @@ func AddStudent(c echo.Context) error {
 func GetStudentByFullName(c echo.Context) error {
     firstName := c.Param("first_name")
     lastName := c.Param("last_name")
-    for i := range students {
-        if students[i].FirstName == firstName && students[i].LastName == lastName {
-            return c.JSON(http.StatusOK, students[i])
+    for _,student := range students {
+        if student.FirstName == firstName && student.LastName == lastName {
+            return c.JSON(http.StatusOK, student)
         }
     }
  
