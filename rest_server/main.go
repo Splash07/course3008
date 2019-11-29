@@ -9,6 +9,29 @@ import (
 	"github.com/labstack/echo/middleware"
 )
 
+var (
+	students := []student.Student{
+		{
+			FirstName: "Dylan",
+			LastName:  "Nguyen",
+			Age:       24,
+			Email:     "ntd@netcompany.com",
+		},
+		{
+			FirstName: "Ha",
+			LastName:  "Hoang",
+			Age:       18,
+			Email:     "hhh@netcompany.com",
+		},
+		{
+			FirstName: "Dat",
+			LastName:  "Nguyen",
+			Age:       24,
+			Email:     "ntda@netcompany.com",
+		},
+	}
+)
+
 func main() {
 	e := echo.New()
 
@@ -24,8 +47,16 @@ func main() {
 
 
 	// Route => handler
-	e.GET("/all_students", controllers.GetAllStudents)
+
+	// No Param
+	e.GET("/all_students", controllers.GetAllStudents(students))
+
+	// Params: first_name, last_name
+	e.GET("/student", controllers.GetStudentByFullName(students))
+
+	// No Param
+	e.POST("/new_student", controllers.AddStudent(students))
 
 	// Start Server
-	e.Logger.Fatal(e.Start(":1323"))
+	e.Logger.Fatal(e.Start(":1010"))
 }

@@ -6,27 +6,34 @@ import (
 	"net/http"
 )
 
-func GetAllStudents(c echo.Context) error {
-	students := []student.Student{
-		{
-			FirstName: "Dylan",
-			LastName:  "Nguyen",
-			Age:       24,
-			Email:     "ntd@netcompany.com",
-		},
-		{
-			FirstName: "Ha",
-			LastName:  "Hoang",
-			Age:       18,
-			Email:     "hhh@netcompany.com",
-		},
-		{
-			FirstName: "Dat",
-			LastName:  "Nguyen",
-			Age:       24,
-			Email:     "ntda@netcompany.com",
-		},
-	}
+//------------
+// Handlers
+//------------
 
+func GetAllStudents(students[] student.Student, c echo.Context) error {
 	return c.JSON(http.StatusOK, students)
 }
+
+func AddStudent(students[] student.Student, c echo.Context) error {
+	newStudent := new (student.Student)
+
+	if err := c.Bind(newStudent); err != nil {
+		return err
+	}
+
+	students = append(students, newStudent)
+	return c.JSON(http.StatusCreated, newStudent)
+}
+
+func GetStudentByFullName(students[] student.Student, c echo.Context) error {
+	firstName, _ := strconv.Atoi(c.Param("first_name"))
+	lastName, _ := strconv.Atoi(c.Param("last_name"))
+	for i := range students {
+		if (students[i].FirstName == firstName && students[i].LastName == lastName) {
+			return c.JSON(http.StatusOK, students[i])
+		}
+	}
+	
+}
+
+
