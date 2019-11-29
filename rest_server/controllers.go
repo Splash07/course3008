@@ -7,7 +7,7 @@ import (
 )
 
 func getAllStudents(c echo.Context) error {
-	students := &student{
+	students := &student.Student{
 		FirstName: "Dylan",
 		LastName:  "Nguyen",
 		Age:       "24",
